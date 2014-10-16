@@ -1,0 +1,997 @@
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="-1">
+        <link rel="alternate" type="application/rss+xml" title="JavaRanch: Why String class is immutable" href="http://www.coderanch.com/forums/rss/topicPosts/522391">
+    <meta name="description" content="hello friends  i am new to this world so if this is very basic question then forgive me but i want proper explanation i have two question  1.why strin">
+        <meta name="keywords" content="class,string,difference,object,question,stringbuilder,this,thread,wrapper">
+
+<style type="text/css">@import url( /templates/default/styles/style.css?1377436717280 );</style>
+
+
+<title>Why String class is immutable (SCJP forum at JavaRanch)</title>
+
+    <link rel="canonical" href="http://www.coderanch.com/t/522391/java-programmer-SCJP/certification/String-class-immutable">
+    <link rel="alternate" media="handheld" href="http://www.coderanch.com/mobile/t/522391/java-programmer-SCJP/certification/String-class-immutable?foo=a">
+<link rel="search" type="application/opensearchdescription+xml" href="http://www.coderanch.com/how-to/javaranch-saloon-os.xml" title="JavaRanch Saloon">
+<link rel="search" type="application/opensearchdescription+xml" href="http://www.coderanch.com/how-to/javaranch-faq-os.xml" title="JavaRanch FAQ">
+</head>
+
+<body class="en_US"><div style="visibility: hidden; position: absolute; overflow: hidden; padding: 0px; width: 0px; left: 0px; top: 0px;" id="WzTtDiV"></div>
+
+
+    <div class="shngl" align="center">
+        <center><table vspace="30" width="70%" border="1" cellpadding="15"><tbody><tr bgcolor="#f0e6d5"><td><center><font size="2"> 
+
+This week's giveaway is in the <a href="http://www.coderanch.com/forums/f-24/java-programmer-SCJP">OCPJP</a> forum.<br>We're giving away four assignment reviews in <b>ExamLab</b> and have Devaka Cooray on-line!<br>See <a href="http://www.coderanch.com/t/618755/java-programmer-SCJP/certification/Devaka-Cooray">this thread</a> for details.
+
+</font></center></td></tr></tbody></table></center>
+    </div>
+
+<table width="100%" border="0">
+    <tbody><tr>
+        <td>
+            <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                <tbody><tr>
+                    <td align="center">
+
+                            <img src="Why%20String%20class%20is%20immutable%20%28SCJP%20forum%20at%20JavaRanch%29_files/moosefly.gif" alt="The moose likes Programmer Certification (SCJP/OCPJP) and the fly likes Why String class is immutable" title="" vspace="1" border="0">
+                    </td>
+                    <td class="logo" valign="middle">
+                        A friendly place for programming greenhorns!
+                    </td>
+
+                    <td valign="middle" width="100%" align="center">
+                        <span class="boardtitle">Big Moose Saloon</span>
+                        <table border="0" cellpadding="2" cellspacing="0">
+                            <tbody><tr>
+                                <td valign="top" align="center" nowrap="nowrap">&nbsp;
+                                    <a id="search" class="mainmenu" href="http://www.coderanch.com/forums/search/filters/24"><b>Search</b></a>
+                                    | <a id="faq" class="mainmenu nonForumLink" href="http://www.coderanch.com/how-to/java/Java-FAQ"><b>Java FAQ</b></a>
+                                    | <a id="latest" class="mainmenu" href="http://www.coderanch.com/forums/recentTopics/list">Recent Topics</a>
+
+                                    <br>
+
+
+
+                                        <a id="login" class="mainmenu" href="http://www.coderanch.com/forums/user/login">Register / Login</a>
+                                        <br>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <br><br>
+                                        <div class="announcementBar">Win a free assignment review in <a href="http://www.examlab.org/">ExamLab</a> this week in the <a href="http://www.coderanch.com/forums/f-24/java-programmer-SCJP">OCPJP</a> forum!
+</div>
+                                    </td>
+                                </tr>
+                        </tbody></table>
+                    </td>
+                </tr>
+            </tbody></table>
+        </td>
+    </tr>
+    <tr>
+        <td>
+
+<script type="text/javascript" src="Why%20String%20class%20is%20immutable%20%28SCJP%20forum%20at%20JavaRanch%29_files/userLocalTime.js"></script>
+<script type="text/javascript" src="Why%20String%20class%20is%20immutable%20%28SCJP%20forum%20at%20JavaRanch%29_files/jquery.js"></script>
+<script type="text/javascript" src="Why%20String%20class%20is%20immutable%20%28SCJP%20forum%20at%20JavaRanch%29_files/jquery_002.js"></script>
+<script type="text/javascript" src="Why%20String%20class%20is%20immutable%20%28SCJP%20forum%20at%20JavaRanch%29_files/post_show.js"></script>
+<script type="text/javascript" src="Why%20String%20class%20is%20immutable%20%28SCJP%20forum%20at%20JavaRanch%29_files/post.js"></script>
+<script type="text/javascript" src="Why%20String%20class%20is%20immutable%20%28SCJP%20forum%20at%20JavaRanch%29_files/pagination.js"></script>
+<script type="text/javascript" src="Why%20String%20class%20is%20immutable%20%28SCJP%20forum%20at%20JavaRanch%29_files/wz_tooltip.js"></script>
+<!--
+<script type="text/javascript" src="/templates/default/js/social.js"></script>
+-->
+
+
+<script type="text/javascript">
+function showEmail(beforeAt, afterAt)
+{
+	return beforeAt + "@" + afterAt;
+}
+
+function addBookmark(relationType, relationId)
+{
+	var w = window.open('/forums/bookmarks/insert/' + relationType + '/' + relationId + '', 'bookmark_add', 'width=700, height=200, scrollbars=auto, resizable=true');
+	w.focus();
+}
+var forumUrlPrefix = "/forums";
+var imagesServedFrom = "http://cache-www.coderanch.com";
+
+
+    function reportToModerationPrompt(postId, topicId) {
+        var reason = prompt("Please explain why you feel this post is abusive or in violation of forum policies:");
+
+        if (reason == null || reason == "") {
+            alert("Please specify a reason for reporting this post");
+            return false;
+        } else {
+        	var link = '/jforum?module=posts&action=reportToModerator&post_id=' + postId + '&topic_id=' + topicId;
+            link += "&reason=" + encodeURIComponent(reason);
+        }
+        submitForm(link);
+
+        return true;
+    }
+
+    var watchImage = "http://cache-www.coderanch.com/templates/default/images/watch_topic_start.gif";
+    var unwatchImage = "http://cache-www.coderanch.com/templates/default/images/stop_watching.gif";
+    var watchURL = "/forums/posts/watch/0/522391";
+    var unwatchURL = "/forums/posts/unwatch/0/522391";
+    var unwatchHandler = function() { turnOn=false; toggleWatch(); return false; };
+    var watchHandler = function() { turnOn=true; toggleWatch(); return false; };
+    var turnOn, remove;
+
+    function toggleWatch () {
+        $.ajax({
+            url: turnOn ? watchURL : unwatchURL,
+            type: 'POST',
+            dataType: 'json',
+            headers: {'OWASP_CSRFTOKEN': '41O3-YW09-EQ1I-PJ2Z-UAUL-ITTR-O3UZ-I4WC'},
+            success: function (data) {
+                //$("#messages").html(data.message);
+                if (turnOn) {
+                    $(".toggleWatchImage")[0].src = unwatchImage;
+                    $(".toggleWatchImage")[1].src = unwatchImage;
+                    $(".toggleWatchLink")[0].href = unwatchURL;
+                    $(".toggleWatchLink")[1].href = unwatchURL;
+                    $(".toggleWatchLink")[0].onclick = unwatchHandler;
+                    $(".toggleWatchLink")[1].onclick = unwatchHandler;
+                } else {
+                    if (remove) {
+                        // for unwatching locked topics
+                        $(".toggleWatchImage")[0].style.visibility = "hidden";
+                        $(".toggleWatchImage")[1].style.visibility = "hidden";
+                        $(".toggleWatchLink")[0].href = "#";
+                        $(".toggleWatchLink")[1].href = "#";
+                        $(".toggleWatchLink")[0].onclick = "return false;";
+                        $(".toggleWatchLink")[1].onclick = "return false;";
+                    } else {
+                        $(".toggleWatchImage")[0].src = watchImage;
+                        $(".toggleWatchImage")[1].src = watchImage;
+                        $(".toggleWatchLink")[0].href = watchURL;
+                        $(".toggleWatchLink")[1].href = watchURL;
+                        $(".toggleWatchLink")[0].onclick = watchHandler;
+                        $(".toggleWatchLink")[1].onclick = watchHandler;
+                    }
+                }
+            }
+        });
+    }
+
+
+</script>
+
+
+<script>
+function submitForm(newAction) {
+	var form = document.helperForm;
+	form.action = newAction;
+	helperForm.submit();
+}</script>
+<form name="helperForm" action="#" method="post"><input name="OWASP_CSRFTOKEN" value="41O3-YW09-EQ1I-PJ2Z-UAUL-ITTR-O3UZ-I4WC" type="hidden"></form>
+
+<table width="97%" align="center" border="0" cellpadding="10" cellspacing="0">
+    <tbody><tr>
+        <td class="bodyline">
+        <span class="nav">
+            <a class="maintitle" href="http://www.javaranch.com/">JavaRanch</a> » <a class="maintitle" href="http://www.coderanch.com/forums">Java Forums</a> »
+            <a class="maintitle" href="http://www.coderanch.com/forums/c/7/certification">Certification</a> »
+            <a class="maintitle" href="http://www.coderanch.com/forums/f-24/java-programmer-SCJP">Programmer Certification (SCJP/OCPJP)</a>
+        </span>
+
+
+
+            
+<table class="threadbar" width="100%" border="0" cellpadding="2" cellspacing="2">
+  <tbody><tr>
+    <td valign="middle" align="left">
+    			<img class="opaque" title="You must login or register" alt="Reply" src="Why%20String%20class%20is%20immutable%20%28SCJP%20forum%20at%20JavaRanch%29_files/reply.gif" width="82px" height="25px">
+			<img class="opaque" title="You must login or register" src="Why%20String%20class%20is%20immutable%20%28SCJP%20forum%20at%20JavaRanch%29_files/bookmark_it.gif" alt="Bookmark &quot;Why String class is immutable&quot;" width="82" height="25">
+		<img class="opaque" title="You must login or register" src="Why%20String%20class%20is%20immutable%20%28SCJP%20forum%20at%20JavaRanch%29_files/watch_topic_start.gif" alt="Watch &quot;Why String class is immutable&quot;" width="82" height="25">
+    </td>
+    <td align="right">
+      	<img class="opaque" title="You must login or register" alt="New topic" src="Why%20String%20class%20is%20immutable%20%28SCJP%20forum%20at%20JavaRanch%29_files/post.gif" width="82px" height="25px">
+    </td>    
+  </tr>
+</tbody></table>
+
+            <a name="2366361">
+
+
+                </a><table id="postTable" class="forumline" width="100%" border="0" cellpadding="0" cellspacing="0">
+                                <tbody><tr>
+                    <th class="author" width="18%" nowrap="nowrap">Author</th>
+                    <th class="subject">
+                        <h1>
+                            <span id="topicSubject">Why String class is immutable</span>
+                        </h1>
+                    </th>
+                </tr>
+
+                                
+
+
+
+
+
+                    <tr class="firstRowOfPost">
+
+
+
+                        <td class="row1 userPostInfo" rowspan="2" valign="top" align="left">
+                            <a name="2366361"></a>
+<span class="authorName"><a href="http://www.coderanch.com/forums/user/profile/237910">yashprit singh</a></span>
+
+
+<br>
+
+<span class="gensmall">
+    Greenhorn
+    <br>
+
+<br>
+
+
+    Joined: Jan 04, 2011<br>
+    Posts: 5
+<br>
+
+
+</span>
+
+
+<br>
+
+<div class="bumperStickers">
+    <a class="nonForumLink" href="http://www.coderanch.com/how-to/java/BumperStickers" target="_blank">I like...</a><br>
+        <img src="Why%20String%20class%20is%20immutable%20%28SCJP%20forum%20at%20JavaRanch%29_files/16_java.gif" alt="Java" title="Java" border="0">
+        <img src="Why%20String%20class%20is%20immutable%20%28SCJP%20forum%20at%20JavaRanch%29_files/16_mysql.gif" alt="MySQL Database" title="MySQL Database" border="0">
+        <img src="Why%20String%20class%20is%20immutable%20%28SCJP%20forum%20at%20JavaRanch%29_files/16_ubuntu.gif" alt="Ubuntu" title="Ubuntu" border="0">
+</div>
+
+
+                        </td>
+
+                        <td colspan="1" class="row1" valign="top">
+<div class="postinfo row1">
+	<div class="date">
+		<span class="postdetails">posted <script>"Jan 04, 2011 11:25:53".toLocaleDateTime();</script>01/04/2011 04:55:53 PM<noscript><span class="lastPostTime">Jan 04, 2011 04:25:53</span></noscript></span>                
+
+		<img class="opaque" alt="private message" title="You must login or register" src="Why%20String%20class%20is%20immutable%20%28SCJP%20forum%20at%20JavaRanch%29_files/icon_pm.gif" width="59px" height="18px">
+
+
+    </div>
+	<div class="action">
+			<div id="like_message_2366361" class="likesHiddenDiv">
+				<img src="Why%20String%20class%20is%20immutable%20%28SCJP%20forum%20at%20JavaRanch%29_files/thumbs-up.gif">
+				0        
+			</div>
+			<img class="opaque" alt="Quote" title="You must login or register" src="Why%20String%20class%20is%20immutable%20%28SCJP%20forum%20at%20JavaRanch%29_files/icon_quote.gif" width="59" height="18px">
+	</div>
+</div>
+                        </td>
+                    </tr>
+
+                    <tr class="messageRow">
+
+                        <td class="row1 postbody" id="post_text_2366361" valign="top">
+                            <span class="postbody">
+                                    hello friends 
+<br> i am new to this world so if this is very basic question then forgive me but i want proper explanation
+<br> i have two question 
+<br> 
+<br> 1.why <a href="http://www.coderanch.com/t/410859/java/java/String-StringBuffer-StringBuilder-Performance" class="api" title="String vs. StringBuilder/StringBuffer" target="_new">string</a> is immutable and why all wrapper class are immutable i know these are valued object but i don't get this 
+<br> 2.what is difference between String and <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/StringBuilder.html" class="api" title="Java API" target="_new">StringBuilder</a> class.
+<br>  somewhere i read that immutable class are thread safe is this true??
+<br> 
+<br> thank you  
+                            </span>
+
+
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="spacerow row1" colspan="2" height="1"><img src="Why%20String%20class%20is%20immutable%20%28SCJP%20forum%20at%20JavaRanch%29_files/spacer.gif" alt="" width="1" height="1"></td>
+                    </tr>
+
+
+
+
+                    <tr class="firstRowOfPost">
+
+
+
+                        <td class="row2 userPostInfo" rowspan="3" valign="top" align="left">
+                            <a name="2366395"></a>
+<span class="authorName"><a href="http://www.coderanch.com/forums/user/profile/234345">Javin Paul</a></span>
+
+
+<br>
+
+<span class="gensmall">
+    Ranch Hand
+    <br>
+
+<br>
+
+
+    Joined: Oct 15, 2010<br>
+    Posts: 278
+<br>
+
+
+</span>
+
+
+<br>
+
+<div class="bumperStickers">
+    <a class="nonForumLink" href="http://www.coderanch.com/how-to/java/BumperStickers" target="_blank">I like...</a><br>
+        <img src="Why%20String%20class%20is%20immutable%20%28SCJP%20forum%20at%20JavaRanch%29_files/16_eclipse.gif" alt="Eclipse IDE" title="Eclipse IDE" border="0">
+        <img src="Why%20String%20class%20is%20immutable%20%28SCJP%20forum%20at%20JavaRanch%29_files/16_firefox.gif" alt="Firefox Browser" title="Firefox Browser" border="0">
+        <img src="Why%20String%20class%20is%20immutable%20%28SCJP%20forum%20at%20JavaRanch%29_files/16_linux.gif" alt="Linux" title="Linux" border="0">
+</div>
+
+
+                        </td>
+
+                        <td colspan="1" class="row2" valign="top">
+<div class="postinfo row2">
+	<div class="date">
+		<span class="postdetails">posted <script>"Jan 04, 2011 12:24:36".toLocaleDateTime();</script>01/04/2011 05:54:36 PM<noscript><span class="lastPostTime">Jan 04, 2011 05:24:36</span></noscript></span>                
+
+		<img class="opaque" alt="private message" title="You must login or register" src="Why%20String%20class%20is%20immutable%20%28SCJP%20forum%20at%20JavaRanch%29_files/icon_pm.gif" width="59px" height="18px">
+
+
+    </div>
+	<div class="action">
+			<div id="like_message_2366395" class="likesHiddenDiv">
+				<img src="Why%20String%20class%20is%20immutable%20%28SCJP%20forum%20at%20JavaRanch%29_files/thumbs-up.gif">
+				0        
+			</div>
+			<img class="opaque" alt="Quote" title="You must login or register" src="Why%20String%20class%20is%20immutable%20%28SCJP%20forum%20at%20JavaRanch%29_files/icon_quote.gif" width="59" height="18px">
+	</div>
+</div>
+                        </td>
+                    </tr>
+
+                    <tr class="messageRow">
+
+                        <td class="row2 postbody" id="post_text_2366395" valign="top">
+                            <span class="postbody">
+                                    
+<br> 
+<br> Hi Yashprit,
+<br> 
+<br> Exact answer of Why String class is immutable can only be provided by designer of <a href="http://www.javaranch.com/" class="faq" title="JavaRanch" target="_new">java</a> but here I see few reason which enforces immutability of String.
+<br> 
+<br> 
+<br> 1)Imagine String Pool facility without making string immutable , 
+its not possible at all because in case of string pool one string 
+object/literal e.g. "Test" has referenced by many reference variables , 
+so if any one of them change the value others will be automatically gets
+ affected i.e. lets say
+<br> 
+<br> String A = "Test"
+<br> String B = "Test"
+<br> 
+<br> Now String B called "Test".toUpperCase() which change the same 
+object into "TEST" , so A will also be "TEST" which is not desirable.
+<br> 
+<br> 2)String has been widely used as parameter for many java classes 
+e.g. for opening network connection you can pass hostname and port 
+number as string , you can pass database URL as string for opening 
+database connection, you can open any file by passing name of file as 
+argument to File I/O classes.
+<br> 
+<br> In one of my blog post I have discussed this you can check there for more details.
+<br> <a class="snap_shots" href="http://javarevisited.blogspot.com/2010/10/why-string-is-immutable-in-java.html" target="_new" rel="nofollow">http://javarevisited.blogspot.com/2010/10/why-string-is-immutable-in-java.html</a> 
+<br> 
+<br> 
+<br> Now Why Wrapper classes are immutable, again there could be many 
+different reason but immutability makes them pretty useful in 
+multithreaded environment without worrying of thread safety issue also 
+immutability makes them good candidate of being  key in Hashtable and 
+Hashmap .
+<br> 
+<br> Now to your third question 
+<br> what is difference between String and <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/StringBuilder.html" class="api" title="Java API" target="_new">StringBuilder</a> class.
+<br> <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/StringBuilder.html" class="api" title="Java API" target="_new">StringBuilder</a> class has been added in Java 5 and provided similar functionality of <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/StringBuffer.html" class="api" title="Java API" target="_new">StringBuffer</a> (ie.. mutable string ) where on every modification on string , no new object gets created now benefit of using <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/StringBuilder.html" class="api" title="Java API" target="_new">StringBuilder</a> is that its comparatively faster than <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/StringBuffer.html" class="api" title="Java API" target="_new">StringBuffer</a> because <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/StringBuffer.html" class="api" title="Java API" target="_new">StringBuffer</a> is a synchronized class while <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/StringBuilder.html" class="api" title="Java API" target="_new">StringBuilder</a> is not , so in case if you want to use <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/StringBuffer.html" class="api" title="Java API" target="_new">StringBuffer</a> in a environment where thread safety is not concern , consider using <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/StringBuilder.html" class="api" title="Java API" target="_new">StringBuilder</a> for better performance.
+<br> 
+<br> Thanks
+<br> Javin
+                            </span>
+
+
+                        </td>
+                    </tr>
+
+                        <tr>
+                            <td colspan="2" class="row2" width="100%" height="28">
+                            <br>
+                                <hr>
+                                <span class="userSignature"><a class="snap_shots" href="http://javarevisited.blogspot.com/" target="_blank" rel="nofollow">http://javarevisited.blogspot.com</a>  - <a class="snap_shots" href="http://javarevisited.blogspot.com/2011/01/how-classpath-work-in-java.html" target="_new" rel="nofollow">java classpath </a>  - <a class="snap_shots" href="http://java67.blogspot.com/" target="_new" rel="nofollow">Java67 </a> - <a class="snap_shots" href="http://javarevisited.blogspot.com/2011/02/how-hashmap-works-in-java.html" target="_new" rel="nofollow">java hashmap </a> - <a class="snap_shots" href="http://javarevisited.blogspot.com/2011/05/top-10-tips-on-logging-in-java.html" target="_new" rel="nofollow">java logging tips</a>  <a class="snap_shots" href="http://javarevisited.blogspot.com/2011/04/top-20-core-java-interview-questions.html" target="_new" rel="nofollow">java interview questions</a>  <a class="snap_shots" href="http://javarevisited.blogspot.com/2011/08/enum-in-java-example-tutorial.html" target="_new" rel="nofollow">Java Enum Tutorial</a> 
+<br></span>
+                            </td>
+                        </tr>
+                    <tr>
+                        <td class="spacerow row2" colspan="2" height="1"><img src="Why%20String%20class%20is%20immutable%20%28SCJP%20forum%20at%20JavaRanch%29_files/spacer.gif" alt="" width="1" height="1"></td>
+                    </tr>
+
+
+
+
+                    <tr class="firstRowOfPost">
+
+
+
+                        <td class="row1 userPostInfo" rowspan="2" valign="top" align="left">
+                            <a name="2366454"></a>
+<span class="authorNameNoLink" title="You must login or register">yashprit singh</span>
+
+
+<br>
+
+<span class="gensmall">
+    Greenhorn
+    <br>
+
+<br>
+
+
+    Joined: Jan 04, 2011<br>
+    Posts: 5
+<br>
+
+
+</span>
+
+
+<br>
+
+<div class="bumperStickers">
+    <a class="nonForumLink" href="http://www.coderanch.com/how-to/java/BumperStickers" target="_blank">I like...</a><br>
+        <img src="Why%20String%20class%20is%20immutable%20%28SCJP%20forum%20at%20JavaRanch%29_files/16_java.gif" alt="Java" title="Java" border="0">
+        <img src="Why%20String%20class%20is%20immutable%20%28SCJP%20forum%20at%20JavaRanch%29_files/16_mysql.gif" alt="MySQL Database" title="MySQL Database" border="0">
+        <img src="Why%20String%20class%20is%20immutable%20%28SCJP%20forum%20at%20JavaRanch%29_files/16_ubuntu.gif" alt="Ubuntu" title="Ubuntu" border="0">
+</div>
+
+
+                        </td>
+
+                        <td colspan="1" class="row1" valign="top">
+<div class="postinfo row1">
+	<div class="date">
+		<span class="postdetails">posted <script>"Jan 04, 2011 14:02:13".toLocaleDateTime();</script>01/04/2011 07:32:13 PM<noscript><span class="lastPostTime">Jan 04, 2011 07:02:13</span></noscript></span>                
+
+		<img class="opaque" alt="private message" title="You must login or register" src="Why%20String%20class%20is%20immutable%20%28SCJP%20forum%20at%20JavaRanch%29_files/icon_pm.gif" width="59px" height="18px">
+
+
+    </div>
+	<div class="action">
+			<div id="like_message_2366454" class="likesHiddenDiv">
+				<img src="Why%20String%20class%20is%20immutable%20%28SCJP%20forum%20at%20JavaRanch%29_files/thumbs-up.gif">
+				0        
+			</div>
+			<img class="opaque" alt="Quote" title="You must login or register" src="Why%20String%20class%20is%20immutable%20%28SCJP%20forum%20at%20JavaRanch%29_files/icon_quote.gif" width="59" height="18px">
+	</div>
+</div>
+                        </td>
+                    </tr>
+
+                    <tr class="messageRow">
+
+                        <td class="row1 postbody" id="post_text_2366454" valign="top">
+                            <span class="postbody">
+                                    hey thank you Javin Paul
+<br> 
+<br> you have mentioned that immutable class like wrapper class useful 
+in multithreaded environment without worrying of thread safety. then is 
+this applied to String class??
+<br> are wrapper class and String class thread safe and if not then what do you mean by saying useful in multi-threaded environment 
+<br> 
+<br> rest i like the explanation of  String immutable answer pretty much stratified
+<br> 
+<br> thank you again 
+                            </span>
+
+
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="spacerow row1" colspan="2" height="1"><img src="Why%20String%20class%20is%20immutable%20%28SCJP%20forum%20at%20JavaRanch%29_files/spacer.gif" alt="" width="1" height="1"></td>
+                    </tr>
+
+
+
+
+                    <tr class="firstRowOfPost">
+
+
+
+                        <td class="row2 userPostInfo" rowspan="2" valign="top" align="left">
+                            <a name="2366465"></a>
+<span class="authorName"><a href="http://www.coderanch.com/forums/user/profile/236619">Sunny Bhandari</a></span>
+
+
+<br>
+
+<span class="gensmall">
+    Ranch Hand
+    <br>
+
+<br>
+
+
+    Joined: Dec 06, 2010<br>
+    Posts: 446
+<br>
+
+
+</span>
+
+
+<br>
+
+<div class="bumperStickers">
+    <a class="nonForumLink" href="http://www.coderanch.com/how-to/java/BumperStickers" target="_blank">I like...</a><br>
+        <img src="Why%20String%20class%20is%20immutable%20%28SCJP%20forum%20at%20JavaRanch%29_files/16_eclipse.gif" alt="Eclipse IDE" title="Eclipse IDE" border="0">
+        <img src="Why%20String%20class%20is%20immutable%20%28SCJP%20forum%20at%20JavaRanch%29_files/16_firefox.gif" alt="Firefox Browser" title="Firefox Browser" border="0">
+        <img src="Why%20String%20class%20is%20immutable%20%28SCJP%20forum%20at%20JavaRanch%29_files/16_tomcat.gif" alt="Tomcat Server" title="Tomcat Server" border="0">
+</div>
+
+
+                        </td>
+
+                        <td colspan="1" class="row2" valign="top">
+<div class="postinfo row2">
+	<div class="date">
+		<span class="postdetails">posted <script>"Jan 04, 2011 14:22:16".toLocaleDateTime();</script>01/04/2011 07:52:16 PM<noscript><span class="lastPostTime">Jan 04, 2011 07:22:16</span></noscript></span>                
+
+		<img class="opaque" alt="private message" title="You must login or register" src="Why%20String%20class%20is%20immutable%20%28SCJP%20forum%20at%20JavaRanch%29_files/icon_pm.gif" width="59px" height="18px">
+
+
+    </div>
+	<div class="action">
+			<div id="like_message_2366465" class="likesHiddenDiv">
+				<img src="Why%20String%20class%20is%20immutable%20%28SCJP%20forum%20at%20JavaRanch%29_files/thumbs-up.gif">
+				0        
+			</div>
+			<img class="opaque" alt="Quote" title="You must login or register" src="Why%20String%20class%20is%20immutable%20%28SCJP%20forum%20at%20JavaRanch%29_files/icon_quote.gif" width="59" height="18px">
+	</div>
+</div>
+                        </td>
+                    </tr>
+
+                    <tr class="messageRow">
+
+                        <td class="row2 postbody" id="post_text_2366465" valign="top">
+                            <span class="postbody">
+                                    He meant that Strings are so widely 
+used in every program so if a String has been initialized then you don't
+ need to worry about other threads modifying the value of String object.
+<br> 
+<br> Imagine a program where you are putting synchronized blocks just to
+ make sure that other threads don't interfere with the string object you
+ just created.
+<br> 
+<br> Is  that clear now?
+                            </span>
+
+
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="spacerow row2" colspan="2" height="1"><img src="Why%20String%20class%20is%20immutable%20%28SCJP%20forum%20at%20JavaRanch%29_files/spacer.gif" alt="" width="1" height="1"></td>
+                    </tr>
+
+
+
+
+                    <tr class="firstRowOfPost">
+
+
+
+                        <td class="row1 userPostInfo" rowspan="2" valign="top" align="left">
+                            <a name="2366615"></a>
+<span class="authorName"><a href="http://www.coderanch.com/forums/user/profile/225726">Prashant Shiralkar</a></span>
+
+
+<br>
+
+<span class="gensmall">
+    Greenhorn
+    <br>
+
+<br>
+
+
+    Joined: Apr 13, 2010<br>
+    Posts: 19
+<br>
+
+
+</span>
+
+
+
+
+                        </td>
+
+                        <td colspan="1" class="row1" valign="top">
+<div class="postinfo row1">
+	<div class="date">
+		<span class="postdetails">posted <script>"Jan 04, 2011 17:21:16".toLocaleDateTime();</script>01/04/2011 10:51:16 PM<noscript><span class="lastPostTime">Jan 04, 2011 10:21:16</span></noscript></span>                
+
+		<img class="opaque" alt="private message" title="You must login or register" src="Why%20String%20class%20is%20immutable%20%28SCJP%20forum%20at%20JavaRanch%29_files/icon_pm.gif" width="59px" height="18px">
+
+
+    </div>
+	<div class="action">
+			<div id="like_message_2366615" class="likesHiddenDiv">
+				<img src="Why%20String%20class%20is%20immutable%20%28SCJP%20forum%20at%20JavaRanch%29_files/thumbs-up.gif">
+				0        
+			</div>
+			<img class="opaque" alt="Quote" title="You must login or register" src="Why%20String%20class%20is%20immutable%20%28SCJP%20forum%20at%20JavaRanch%29_files/icon_quote.gif" width="59" height="18px">
+	</div>
+</div>
+                        </td>
+                    </tr>
+
+                    <tr class="messageRow">
+
+                        <td class="row1 postbody" id="post_text_2366615" valign="top">
+                            <span class="postbody">
+                                    <blockquote class="uncited">
+			<div>  why string is immutable and why all wrapper class are immutable i know these are valued object but i don't get this   </div>
+		</blockquote>
+<br> By default, all Java classes are mutable i.e contents of their 
+instances can be modified. But there are few advantages that 
+immutability offers (<a class="snap_shots" href="http://download.oracle.com/javase/tutorial/essential/concurrency/immutable.html" target="_blank">http://download.oracle.com/javase/tutorial/essential/concurrency/immutable.html</a>),
+ and that's why some classes are made immutable by marking them as 
+final. The classes in question are String and Wrapper classes, and if 
+you think logically about them (any immutable class), then the 
+description in the link provided would start making sense. Let us 
+address each of the two separately:
+<br> 
+<br> <b>String class: </b>
+<br> As mentioned in <a href="http://www.coderanch.com/how-to/java/ScjpFaq" class="api" title="SCJP FAQ" target="_new">SCJP</a>
+ page 433 by Kathy Siera and Bert Bates, as applications grow, its very 
+common to have a lot of redundancy in the String literals for a program.
+ Hence, in order to address this issue, the designers of Java came up 
+with the concept of String pool which improves performance by making 
+efficient use of available memory. But now, as you might imagine, if 
+several reference variables refer to the same String without even 
+knowing it, it would be bad if any of them could change the String's 
+value. Hence, there arose the need of making this String class 
+immutable. 
+<br> 
+<br> <b>Wrapper classes:</b>
+<br> One of the objectives of making wrapper classes is to provide a 
+mechanism to treat primitives with activities reserved for objects, like
+ being added to Collections, or returned from a method with an object 
+return value. If you think about a collection, it would often be the 
+case that it is accessed by multiple threads. If the wrapper classes 
+weren't mutable, it would run into the risk of concurrent modification 
+and thus lead to inconsistent states. Thus, in order to avoid conflicts,
+ wrapper classes are made immutable.
+<br> 
+<br> So, in general, whenever you come across an immutable class, it 
+would be logical to think of its instances being used in a concurrent 
+manner. Also, if you do not want your object contents to be modified 
+(one of the reasons being concurrent access), then make the class 
+immutable.
+<br> 
+                            </span>
+
+
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="spacerow row1" colspan="2" height="1"><img src="Why%20String%20class%20is%20immutable%20%28SCJP%20forum%20at%20JavaRanch%29_files/spacer.gif" alt="" width="1" height="1"></td>
+                    </tr>
+
+
+
+
+                    <tr class="firstRowOfPost">
+
+
+
+                        <td class="row2 userPostInfo" rowspan="2" valign="top" align="left">
+                            <a name="2367738"></a>
+<span class="authorNameNoLink" title="You must login or register">Javin Paul</span>
+
+
+<br>
+
+<span class="gensmall">
+    Ranch Hand
+    <br>
+
+<br>
+
+
+    Joined: Oct 15, 2010<br>
+    Posts: 278
+<br>
+
+
+</span>
+
+
+<br>
+
+<div class="bumperStickers">
+    <a class="nonForumLink" href="http://www.coderanch.com/how-to/java/BumperStickers" target="_blank">I like...</a><br>
+        <img src="Why%20String%20class%20is%20immutable%20%28SCJP%20forum%20at%20JavaRanch%29_files/16_eclipse.gif" alt="Eclipse IDE" title="Eclipse IDE" border="0">
+        <img src="Why%20String%20class%20is%20immutable%20%28SCJP%20forum%20at%20JavaRanch%29_files/16_firefox.gif" alt="Firefox Browser" title="Firefox Browser" border="0">
+        <img src="Why%20String%20class%20is%20immutable%20%28SCJP%20forum%20at%20JavaRanch%29_files/16_linux.gif" alt="Linux" title="Linux" border="0">
+</div>
+
+
+                        </td>
+
+                        <td colspan="1" class="row2" valign="top">
+<div class="postinfo row2">
+	<div class="date">
+		<span class="postdetails">posted <script>"Jan 06, 2011 12:47:21".toLocaleDateTime();</script>01/06/2011 06:17:21 PM<noscript><span class="lastPostTime">Jan 06, 2011 05:47:21</span></noscript></span>                
+
+		<img class="opaque" alt="private message" title="You must login or register" src="Why%20String%20class%20is%20immutable%20%28SCJP%20forum%20at%20JavaRanch%29_files/icon_pm.gif" width="59px" height="18px">
+
+
+    </div>
+	<div class="action">
+			<div id="like_message_2367738" class="likesHiddenDiv">
+				<img src="Why%20String%20class%20is%20immutable%20%28SCJP%20forum%20at%20JavaRanch%29_files/thumbs-up.gif">
+				0        
+			</div>
+			<img class="opaque" alt="Quote" title="You must login or register" src="Why%20String%20class%20is%20immutable%20%28SCJP%20forum%20at%20JavaRanch%29_files/icon_quote.gif" width="59" height="18px">
+	</div>
+</div>
+                        </td>
+                    </tr>
+
+                    <tr class="messageRow">
+
+                        <td class="row2 postbody" id="post_text_2367738" valign="top">
+                            <span class="postbody">
+                                    
+<br> 
+<br> Hi Yashprit,
+<br> 
+<br> <blockquote class="uncited">
+			<div>
+<br> you have mentioned that immutable class like wrapper class useful 
+in multithreaded environment without worrying of thread safety. then is 
+this applied to String class??
+<br> are wrapper class and String class thread safe and if not then what do you mean by saying useful in multi-threaded environment </div>
+		</blockquote>
+<br> 
+<br> Thread Safe class/object  means we can safely use that object in a 
+multithreaded environment without worrying about inconsistent object 
+state due to multiple thread working on that. if a class is immutable 
+means you can not change its state once it has been created so only read
+ operation is possible on that , since no thread is writing or modifying
+ its state , it can be safely shared between multiple thread without 
+worrying about inconsistent object state.
+<br> 
+<br> Its recommended to make your object immutable as much possible to 
+avoid any object inconsistency issue in multithreaded environment.
+<br> 
+<br> Since String and wrapper classes are immutable no once can modify 
+object after creation so you can safely shared that between thread 
+without worrying about object state.
+<br> 
+<br> hope this makes things clear.
+<br> 
+<br> Thanks
+<br> Javin
+                            </span>
+
+
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="spacerow row2" colspan="2" height="1"><img src="Why%20String%20class%20is%20immutable%20%28SCJP%20forum%20at%20JavaRanch%29_files/spacer.gif" alt="" width="1" height="1"></td>
+                    </tr>
+
+
+
+
+                    <tr class="firstRowOfPost">
+
+
+
+                        <td class="row1 userPostInfo" rowspan="2" valign="top" align="left">
+                            <a name="2368349"></a>
+<span class="authorName"><a href="http://www.coderanch.com/forums/user/profile/172483">Shemida Nivedha</a></span>
+
+
+<br>
+
+<span class="gensmall">
+    Greenhorn
+    <br>
+
+<br>
+
+
+    Joined: May 22, 2008<br>
+    Posts: 18
+<br>
+
+
+</span>
+
+
+
+
+                        </td>
+
+                        <td colspan="1" class="row1" valign="top">
+<div class="postinfo row1">
+	<div class="date">
+		<span class="postdetails">posted <script>"Jan 07, 2011 13:01:09".toLocaleDateTime();</script>01/07/2011 06:31:09 PM<noscript><span class="lastPostTime">Jan 07, 2011 06:01:09</span></noscript></span>                
+
+		<img class="opaque" alt="private message" title="You must login or register" src="Why%20String%20class%20is%20immutable%20%28SCJP%20forum%20at%20JavaRanch%29_files/icon_pm.gif" width="59px" height="18px">
+
+
+    </div>
+	<div class="action">
+			<div id="like_message_2368349" class="likesHiddenDiv">
+				<img src="Why%20String%20class%20is%20immutable%20%28SCJP%20forum%20at%20JavaRanch%29_files/thumbs-up.gif">
+				0        
+			</div>
+			<img class="opaque" alt="Quote" title="You must login or register" src="Why%20String%20class%20is%20immutable%20%28SCJP%20forum%20at%20JavaRanch%29_files/icon_quote.gif" width="59" height="18px">
+	</div>
+</div>
+                        </td>
+                    </tr>
+
+                    <tr class="messageRow">
+
+                        <td class="row1 postbody" id="post_text_2368349" valign="top">
+                            <span class="postbody">
+                                    Hi Yashprit,
+<br> 
+<br> I found a link in JAVA RANCH which clearly states the String's immutable behaviour and how it could be made mutable.
+<br> Please go through the link - <a class="snap_shots" href="http://www.javaranch.com/journal/2003/04/immutable.htm" target="_blank">http://www.javaranch.com/journal/2003/04/immutable.htm</a>
+<br> 
+<br> Thanks,
+<br> Shemida
+                            </span>
+
+
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="spacerow row1" colspan="2" height="1"><img src="Why%20String%20class%20is%20immutable%20%28SCJP%20forum%20at%20JavaRanch%29_files/spacer.gif" alt="" width="1" height="1"></td>
+                    </tr>
+
+            <tr>
+            <td width="18%" bgcolor="#DEC7A4"><img src="Why%20String%20class%20is%20immutable%20%28SCJP%20forum%20at%20JavaRanch%29_files/bunkhouse_smoke.gif"></td>
+            <td valign="top" width="82%" align="left" bgcolor="#DEC7A4">
+                &nbsp;<br>
+                    <div class="shngl" align="left">
+                        <center><table vspace="30" width="55%" border="1" cellpadding="15"><tbody><tr bgcolor="#f0e6d5"><td><center><font size="2"> 
+
+<b>Granny's Programming Pearls</b><br>
+<i>"inside of every large program is a small program struggling to get out"</i><br>
+<b><a href="http://www.coderanch.com/forums/banner/redirect/494" target="_blank">JavaRanch.com/granny.jsp</a></b>
+</font>
+</center></td></tr></tbody></table></center>
+                    </div>
+                &nbsp;<br>
+                </td>
+                </tr>
+                <tr class="postbody" align="left">
+                    <td colspan="2">
+                    subject: Why String class is immutable
+                    </td>
+                </tr>
+
+                <tr align="center">
+                    <td class="catbottom" colspan="2" height="28">
+                        <table border="0" cellpadding="0" cellspacing="0">
+                            <tbody><tr>
+                                <td align="center"><span class="gensmall">&nbsp;</span></td>
+                            </tr>
+                        </tbody></table>
+                    </td>
+                </tr>
+            </tbody></table>
+
+
+            <table width="100%" align="center">
+
+
+                    <tbody><tr class="subject"><th>Similar Threads</th></tr>
+                    <tr>
+                            </tr><tr align="center">
+                                <td class="row1 gen"><a href="http://www.coderanch.com/t/249294/java-programmer-SCJP/certification/Strings-immutable">
+                                    why Strings are immutable</a>
+                                </td>
+                            </tr>
+                            <tr align="center">
+                                <td class="row2 gen"><a href="http://www.coderanch.com/t/569184/java-programmer-SCJP/certification/String-class-Immutable">
+                                    Why was the String class made Immutable?</a>
+                                </td>
+                            </tr>
+                            <tr align="center">
+                                <td class="row1 gen"><a href="http://www.coderanch.com/t/528326/java/java/Strign-replace-replaceAll">
+                                    Strign.replace() replaceAll()</a>
+                                </td>
+                            </tr>
+                            <tr align="center">
+                                <td class="row2 gen"><a href="http://www.coderanch.com/t/379476/java/java/String">
+                                    On String</a>
+                                </td>
+                            </tr>
+                            <tr align="center">
+                                <td class="row1 gen"><a href="http://www.coderanch.com/t/408859/java/java/string">
+                                    why string </a>
+                                </td>
+                            </tr>
+                    
+            </tbody></table>
+        </td>
+    </tr>
+</tbody></table>
+
+
+<a name="quick"></a>
+
+
+		</td>
+	</tr>
+</tbody></table>
+<div class="gensmall center">
+<script>
+document.write("All times above are in your local time zone & format.");
+document.write("The current ranch time (not your local time) is ");
+document.write("Aug 27, 2013 05:56:07".bold() + ".");
+</script>All times above are in your local time zone &amp; format.The current ranch time (not your local time) is <b>Aug 27, 2013 05:56:07</b>.<noscript>All times are in JavaRanch time: GMT-6 in summer, GMT-7 in winter</noscript>
+</div>
+
+
+
+<script type="text/javascript">
+	var gaJsHost = (("https:" == document.location.protocol) ?  "https://ssl." : "http://www.");
+	document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script><script src="Why%20String%20class%20is%20immutable%20%28SCJP%20forum%20at%20JavaRanch%29_files/ga.js" type="text/javascript"></script>
+<script type="text/javascript">
+if (typeof _gat !== "undefined") {
+	var pageTracker = _gat._getTracker("UA-2371260-2");
+	pageTracker._trackPageview();
+
+	dt = new Date();
+	pageTracker._setVar("hour: " + dt.getHours());
+}
+</script>
+
+<br>
+<div class="float-divider"></div>
+<div id="footer">
+ <div class="footerLinksDiv center">
+	<a class="nonForumLink" href="http://www.coderanch.com/how-to/code/ContactUs">Contact Us</a>
+	| Powered by <a href="http://www.jforum.net/" target="_blank">JForum</a>
+	| <span class="copyrightOwner">Copyright © 1998-2013 <a href="http://www.javaranch.com/paul-wheaton.jsp">Paul Wheaton</a></span>
+ </div>
+</div>
+<div class="float-divider"></div>
+
+
+
+
+</body></html>
